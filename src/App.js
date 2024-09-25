@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import tracks from './tracks';
 import TrackList from './components/TrackList/TrackList';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
           Learn React
         </a>
       </header>
-      <TrackList />
+      <TrackList tracks={tracks} />
     </div>
   );
 }
