@@ -1,0 +1,30 @@
+.track-container {
+  border: solid 3px #4ECDC4;
+  border-radius: 5px;
+  margin: 30px 0px;
+  padding: 15px 20px;
+  background-color: #F7FFF7;
+}
+
+.song-name {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
+.song-info {
+  display: flex;
+  flex-flow: row;
+  column-gap: 15px;
+}
+
+.song-info p {
+  color: #FABC2A;
+}
+
+.song-name {
+  color: #FF6B6B;
+}
+
+span.values {
+  color: #F49F0A;
+}

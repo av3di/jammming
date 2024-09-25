@@ -24,6 +24,31 @@ const tracks = [
     artist: 'Koolkids',
     album: 'Pokemon',
   },
+  {
+    songName: 'Viva La Vida',
+    artist: 'Coldplay',
+    album: 'Lights',
+  },
+  {
+    songName: 'Dogs Out',
+    artist: 'OutKast',
+    album: 'Thousand',
+  },
+  {
+    songName: 'Pokemon Theme',
+    artist: 'Koolkids',
+    album: 'Pokemon',
+  },
+  {
+    songName: 'A Thousand Miles',
+    artist: 'Vanessa Carlton',
+    album: 'Sidewalk',
+  },
+  {
+    songName: 'Night Terrors',
+    artist: 'Twindex',
+    album: 'Coogan',
+  },
 ];
 
 export default tracks;

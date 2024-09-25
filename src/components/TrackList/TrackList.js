@@ -1,4 +1,5 @@
 import React from 'react';
+import './TrackList.css';
 import Track from '../Track/Track';
 
 function TrackList(props) {
@@ -11,9 +12,11 @@ function TrackList(props) {
   });
 
   return (
-    <div>
-      <h1>TrackList</h1>
-      {trackElements}
+    <div className="tracklist-container">
+      <h3>results</h3>
+      <div className="tracks-container">
+        {trackElements}
+      </div>
     </div>
   );
 }
