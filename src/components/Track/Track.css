@@ -1,14 +1,12 @@
 .track-container {
-  border: solid 3px #4ECDC4;
-  border-radius: 5px;
-  margin: 30px 0px;
+  border-bottom: solid 1px #4ECDC4;
   padding: 15px 20px;
-  background-color: #F7FFF7;
 }
 
 .song-name {
   font-size: 36px;
   margin-bottom: 5px;
+  color: #FF6B6B;
 }
 
 .song-info {
@@ -18,11 +16,7 @@
 }
 
 .song-info p {
-  color: #FABC2A;
-}
-
-.song-name {
-  color: #FF6B6B;
+  color: #1F363D;
 }
 
 span.values {

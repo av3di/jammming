@@ -12,7 +12,7 @@ function TrackList(props) {
   });
 
   return (
-    <div className="tracklist-container">
+    <div className="tracklist-panel panel">
       <h3>results</h3>
       <div className="tracks-container">
         {trackElements}
