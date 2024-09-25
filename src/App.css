@@ -96,3 +96,18 @@ input:focus {
   outline: 0;
   box-shadow: 0 7px 7px -7px #FF6B6B;
 }
+
+button {
+  border: 0;
+  background-color: #FF6B6B;
+  color: #F7FFF7;
+  border-radius: 5px;
+  padding: 15px 15px;
+  font-size: 32px;
+  font-family: "Sniglet", system-ui;
+  font-weight: 400;
+}
+
+button:hover {
+  cursor: pointer;
+}
