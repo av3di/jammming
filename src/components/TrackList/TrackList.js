@@ -2,12 +2,11 @@ import React from 'react';
 import Track from '../Track/Track';
 
 function TrackList(props) {
-  const trackElements = props.tracks.map((track, index) => {
-    return <Track key={index}
-        songName={track.songName}
-        artist={track.artist}
-        album={track.album}
+  const trackElements = props.tracks.map((track) => {
+    return <Track key={track.id}
+        track={track}
         onAdd={props.onAdd}
+        onRemove={props.onRemove}
       />
   });
 

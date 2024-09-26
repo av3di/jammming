@@ -15,7 +15,10 @@ function Playlist(props) {
         value={props.name}
         onChange={handleChange}
       />
-      <TrackList tracks={props.tracks} />
+      <TrackList
+        tracks={props.tracks}
+        onRemove={props.onRemove}
+      />
       <SaveToSpotifyButton />
     </div>
   );
