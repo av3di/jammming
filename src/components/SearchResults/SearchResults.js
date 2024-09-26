@@ -4,7 +4,7 @@ import TrackList from '../TrackList/TrackList';
 
 function SearchResults(props) {
   return (
-    <div className="results-panel panel">
+    <div className="panel">
       <h3>results</h3>
       <TrackList tracks={props.tracks} onAdd={props.onAdd} />
     </div>

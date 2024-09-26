@@ -24,8 +24,8 @@ function Track(props) {
           <p className="album">for: <span className="values">{props.track.album}</span></p>
         </div>
       </div>
-      {props.onAdd && <div className="add-button" onClick={handleAddClick}>+</div>}
-      {props.onRemove && <div className="add-button" onClick={handleRemoveClick}>-</div>}
+      {props.onAdd && <div className="edit-button" onClick={handleAddClick}>+</div>}
+      {props.onRemove && <div className="edit-button" onClick={handleRemoveClick}>-</div>}
     </div>
   );
 }
