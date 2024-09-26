@@ -1,5 +1,4 @@
 import React from 'react';
-import './TrackList.css';
 import Track from '../Track/Track';
 
 function TrackList(props) {
@@ -8,16 +7,14 @@ function TrackList(props) {
         songName={track.songName}
         artist={track.artist}
         album={track.album}
+        onAdd={props.onAdd}
       />
   });
 
   return (
-    <div className="tracklist-panel panel">
-      <h3>results</h3>
       <div className="tracks-container">
         {trackElements}
       </div>
-    </div>
   );
 }
 

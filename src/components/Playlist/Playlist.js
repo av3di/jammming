@@ -1,21 +1,21 @@
 import React, {useState} from 'react';
-import './Playlist.css';
+import TrackList from '../TrackList/TrackList';
 import SaveToSpotifyButton from '../SaveToSpotifyButton/SaveToSpotifyButton';
 
-function Playlist() {
-  const [name, setName]  = useState('');
-  const [tracks, setTracks] = useState([]);
+function Playlist(props) {
 
-  const handleChange = ({target}) => setName(target.value);
+
+  const handleChange = ({target}) => props.setName(target.value);
 
   return (
     <div className="panel">
       <h3>playlist</h3>
       <input placeholder="Playlist Name"
         type="text"
-        value={name}
+        value={props.name}
         onChange={handleChange}
       />
+      <TrackList tracks={props.tracks} />
       <SaveToSpotifyButton />
     </div>
   );

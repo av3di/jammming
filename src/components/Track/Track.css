@@ -1,6 +1,10 @@
 .track-container {
   border-bottom: solid 1px #4ECDC4;
   padding: 15px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 15px;
 }
 
 .song-name {
@@ -21,4 +25,17 @@
 
 span.values {
   color: #F49F0A;
+}
+
+.add-button {
+  color: #FF6B6B;
+  font-size: 38px;
+  text-align: center;
+  border: solid 1px #FF6B6B;
+  border-radius: 50%;
+  height: 44px;
+  width: 44px;
+}
+.add-button:hover {
+  cursor: pointer;
 }
