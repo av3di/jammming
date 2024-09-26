@@ -5,12 +5,13 @@
   flex-direction: row;
   align-items: center;
   column-gap: 15px;
+  justify-content: space-between;
 }
 
 .song-name {
   font-size: 36px;
   margin-bottom: 5px;
-  color: #FF6B6B;
+  color: #1F363D;
 }
 
 .song-info {
@@ -28,8 +29,9 @@ span.values {
 }
 
 .add-button {
+  flex: 0 0 44px;
   color: #FF6B6B;
-  font-size: 38px;
+  font-size: 44px;
   text-align: center;
   border: solid 1px #FF6B6B;
   border-radius: 50%;

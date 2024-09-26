@@ -8,7 +8,7 @@ function SearchBar() {
         className="search-box"
         placeholder="Search for songs, artists, etc"
       />
-      <button>search</button>
+      <button className="search-button">search</button>
     </div>
   );
 }

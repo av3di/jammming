@@ -1,0 +1,9 @@
+.playlist-panel {
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 820px) {
+  .playlist-panel {
+    margin-top: 0;
+  }
+}

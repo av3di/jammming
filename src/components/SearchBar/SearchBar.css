@@ -1,9 +1,18 @@
 .search-panel {
   margin-top: 50px;
   margin-bottom: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .search-box {
   border: 1px solid #FF6B6B;
   border-radius: 5px;
   padding: 10px 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-button {
+  margin-left: auto;
+  margin-right: auto;
 }
