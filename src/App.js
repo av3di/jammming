@@ -3,7 +3,7 @@ import './App.css';
 import tracksResults from './tracks';
 import TrackList from './components/TrackList/TrackList';
 import Playlist from './components/Playlist/Playlist';
-import Results from './components/Results/Results';
+import SearchResults from './components/SearchResults/SearchResults';
 
 function App() {
   const [playlistName, setPlaylistName]  = useState('');
@@ -23,7 +23,7 @@ function App() {
         <h1>jammming</h1>
       </header>
       <div className="main-panel">
-        <Results tracks={tracksResults} onAdd={addTrack} />
+        <SearchResults tracks={tracksResults} onAdd={addTrack} />
         <Playlist
           tracks={playlistTracks}
           onRemove={removeTrack}

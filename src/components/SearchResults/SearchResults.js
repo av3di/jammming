@@ -1,8 +1,8 @@
 import React from 'react';
-import './Results.css';
+import './SearchResults.css';
 import TrackList from '../TrackList/TrackList';
 
-function Results(props) {
+function SearchResults(props) {
   return (
     <div className="results-panel panel">
       <h3>results</h3>
@@ -11,4 +11,4 @@ function Results(props) {
   );
 }
 
-export default Results;
+export default SearchResults;
