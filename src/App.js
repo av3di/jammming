@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import SearchBar from './components/SearchBar/SearchBar';
 import tracksResults from './tracks';
 import TrackList from './components/TrackList/TrackList';
 import Playlist from './components/Playlist/Playlist';
@@ -22,6 +23,7 @@ function App() {
       <header className="App-header">
         <h1>jammming</h1>
       </header>
+      <SearchBar />
       <div className="main-panel">
         <SearchResults tracks={tracksResults} onAdd={addTrack} />
         <Playlist

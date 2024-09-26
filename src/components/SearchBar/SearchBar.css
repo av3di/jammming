@@ -1,0 +1,9 @@
+.search-panel {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.search-box {
+  border: 1px solid #FF6B6B;
+  border-radius: 5px;
+  padding: 10px 10px;
+}
