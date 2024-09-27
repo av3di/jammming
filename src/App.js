@@ -25,7 +25,7 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
 
   const onSearch = async (term) => {
-      await Spotify.getAccessToken(code);
+      if (!searchExecuted) await Spotify.getAccessToken(code);
       try {
         const results = await Spotify.search(term);
         setSearchResults(results);

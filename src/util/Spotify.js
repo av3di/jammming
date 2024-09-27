@@ -66,6 +66,7 @@ const Spotify = {
       q,
       type: 'track',
     });
+
     try {
       const accessToken = window.localStorage.getItem('access_token');
       const result = await fetch(`${url}?${params.toString()}`, {
