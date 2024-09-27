@@ -137,6 +137,13 @@ button:hover {
   cursor: pointer;
 }
 
+button:disabled {
+    background-color: #D3D3D3;
+}
+button:disabled:hover {
+    cursor: not-allowed;
+}
+
 button.login {
   margin: 50px auto;
 }

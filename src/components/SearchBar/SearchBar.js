@@ -17,7 +17,7 @@ function SearchBar(props) {
         placeholder="Search for songs"
         onChange={handleChange}
       />
-      <button className="search-button" onClick={handleClick}>search</button>
+      <button className="search-button" onClick={handleClick} disabled={term.length === 0}>search</button>
     </div>
   );
 }
