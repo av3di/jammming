@@ -1,36 +1,31 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import Playlist from './components/Playlist/Playlist';
 import SearchResults from './components/SearchResults/SearchResults';
 import Spotify from './util/Spotify';
-let code = '';
 
 function App() {
-  let loggedIn = false;
-  if (window.localStorage.getItem('access_token') !== null &&
-      window.localStorage.getItem('access_token') !== 'undefined') {
-    loggedIn = true;
-  }
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [code, setCode] = useState('');
 
-  console.log(window.localStorage.getItem('access_token'));
-  console.log('loggedin: ' + loggedIn);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if(params.get("code")) {
+      setCode(params.get("code"));
+      setLoggedIn(true);
+    }
+  }, []);
 
-  const params = new URLSearchParams(window.location.search);
-  if(params.get("code")) {
-    code = params.get("code");
-    loggedIn = true;
-  }
-
-  const [searchExecuted, setSearchExecuted] = useState(false);
-  const [searchResults, setSearchResults] = useState([]);
   const handleClick = async () => {
     if(!code) await Spotify.authorize();
   }
 
+  const [searchExecuted, setSearchExecuted] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+
   const onSearch = async (term) => {
       await Spotify.getAccessToken(code);
-
       try {
         const results = await Spotify.search(term);
         setSearchResults(results);
