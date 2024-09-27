@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './Playlist.css';
 import TrackList from '../TrackList/TrackList';
 import SaveToSpotifyButton from '../SaveToSpotifyButton/SaveToSpotifyButton';

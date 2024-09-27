@@ -43,6 +43,7 @@ h6 {
 
 .App {
   background-color: #1F363D;
+  min-height: 100vh;
 }
 
 .App-header {
@@ -134,4 +135,8 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+button.login {
+  margin: 50px auto;
 }

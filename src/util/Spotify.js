@@ -17,7 +17,6 @@ async function generateCodeChallenge(verifier) {
 
 const Spotify = {
   async authorize() {
-    console.log('generating code');
     const codeVerifier = generateCodeVerifier(64);
     const codeChallenge = await generateCodeChallenge(codeVerifier);
     window.localStorage.setItem('code_verifier', codeVerifier);
@@ -33,10 +32,8 @@ const Spotify = {
     });
 
     window.location.href = `${url}?${params.toString()}`;
-    console.log('end of authorize');
   },
   async getAccessToken(code) {
-    console.log('getAccessToken');
     let codeVerifier = window.localStorage.getItem('code_verifier');
 
     const payload = {
@@ -57,12 +54,12 @@ const Spotify = {
     try {
       const result = await fetch(url, payload);
       const response = await result.json();
+      localStorage.setItem('access_token', response.access_token);
       return response;
     } catch (error) {
       console.log("No access token created: " + error);
       throw error;
     }
-    // localStorage.setItem('access_token', response.access_token);
   }
 }
 
