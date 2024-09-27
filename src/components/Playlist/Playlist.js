@@ -3,10 +3,20 @@ import './Playlist.css';
 import TrackList from '../TrackList/TrackList';
 import SaveToSpotifyButton from '../SaveToSpotifyButton/SaveToSpotifyButton';
 
+const MIN_WINDOW_WIDTH = 820; // corresponds to .main-panel flex-wrap
+
 function Playlist(props) {
-
-
   const handleChange = ({target}) => props.setName(target.value);
+
+  // instructional placeholder
+  let placeholder;
+  if (props.tracks.length === 0) {
+    let arrow = '^';
+    if (window.innerWidth >= MIN_WINDOW_WIDTH) arrow = '<-';
+
+    const placeholderText = `${arrow} add any tracks, name the playlist, then click 'save' when you're done`;
+    placeholder = <p className="placeholder">{placeholderText}</p>;
+  }
 
   return (
     <div className="playlist-panel panel">
@@ -16,10 +26,12 @@ function Playlist(props) {
         value={props.name}
         onChange={handleChange}
       />
+      {placeholder}
       <TrackList
-        tracks={props.tracks}
-        onRemove={props.onRemove}
+          tracks={props.tracks}
+          onRemove={props.onRemove}
       />
+
       <SaveToSpotifyButton />
     </div>
   );
