@@ -60,11 +60,11 @@ const Spotify = {
       throw error;
     }
   },
-  async search() {
+  async search(q) {
     const url = 'https://api.spotify.com/v1/search';
     console.log('serachin....');
     const params = new URLSearchParams({
-      q: 'cold',
+      q,
       type: 'track',
     });
     try {

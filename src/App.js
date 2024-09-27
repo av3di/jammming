@@ -28,10 +28,10 @@ function App() {
     if(!code) await Spotify.authorize();
   }
 
-  const onSearch = async () => {
+  const onSearch = async (term) => {
       await Spotify.getAccessToken(code);
       console.log('back in app');
-      Spotify.search();
+      Spotify.search(term);
   };
 
 
