@@ -62,7 +62,6 @@ const Spotify = {
   },
   async search(q) {
     const url = 'https://api.spotify.com/v1/search';
-    console.log('serachin....');
     const params = new URLSearchParams({
       q,
       type: 'track',
@@ -75,8 +74,7 @@ const Spotify = {
         }
       });
       const response = await result.json();
-      console.log('done search');
-      console.log(response);
+      return response.tracks.items;
     } catch (error) {
       console.log('Something went wrong with search: ' + error);
       throw error;

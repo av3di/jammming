@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
-import tracksResults from './tracks';
 import Playlist from './components/Playlist/Playlist';
 import SearchResults from './components/SearchResults/SearchResults';
 import Spotify from './util/Spotify';
@@ -14,7 +13,6 @@ function App() {
     loggedIn = true;
   }
 
-  const tracksResults2 = [];
   console.log(window.localStorage.getItem('access_token'));
   console.log('loggedin: ' + loggedIn);
 
@@ -24,16 +22,23 @@ function App() {
     loggedIn = true;
   }
 
+  const [searchExecuted, setSearchExecuted] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
   const handleClick = async () => {
     if(!code) await Spotify.authorize();
   }
 
   const onSearch = async (term) => {
       await Spotify.getAccessToken(code);
-      console.log('back in app');
-      Spotify.search(term);
-  };
 
+      try {
+        const results = await Spotify.search(term);
+        setSearchResults(results);
+        setSearchExecuted(true);
+      } catch (error) {
+        console.log('Error retrieving results: ' + error);
+      }
+  };
 
   const [playlistName, setPlaylistName]  = useState('');
   const [playlistTracks, setPlaylistTracks] = useState([]);
@@ -52,9 +57,9 @@ function App() {
     body = (
       <>
         <SearchBar onSearch={onSearch} />
-        {tracksResults2.length > 0 && (
+        {searchExecuted && (
           <div className="main-panel">
-            <SearchResults tracks={tracksResults} onAdd={addTrack} />
+            <SearchResults tracks={searchResults} onAdd={addTrack} />
             <Playlist
               tracks={playlistTracks}
               onRemove={removeTrack}
