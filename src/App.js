@@ -8,19 +8,32 @@ import Spotify from './util/Spotify';
 let code = '';
 
 function App() {
-  // const loggedIn = !!window.localStorage.getItem('access_token');
-  const loggedIn = true;
+  let loggedIn = false;
+  if (window.localStorage.getItem('access_token') !== null &&
+      window.localStorage.getItem('access_token') !== 'undefined') {
+    loggedIn = true;
+  }
+
   const tracksResults2 = [];
+  console.log(window.localStorage.getItem('access_token'));
+  console.log('loggedin: ' + loggedIn);
+
   const params = new URLSearchParams(window.location.search);
-  if(params.get("code")) code = params.get("code");
+  if(params.get("code")) {
+    code = params.get("code");
+    loggedIn = true;
+  }
 
   const handleClick = async () => {
     if(!code) await Spotify.authorize();
-
-    let accessToken = '';
-    if (code) accessToken = await Spotify.getAccessToken(code);
-    loggedIn = true;
   }
+
+  const onSearch = async () => {
+      await Spotify.getAccessToken(code);
+      console.log('back in app');
+      Spotify.search();
+  };
+
 
   const [playlistName, setPlaylistName]  = useState('');
   const [playlistTracks, setPlaylistTracks] = useState([]);
@@ -33,12 +46,12 @@ function App() {
     setPlaylistTracks((prev) => prev.filter(track => track.id !== id));
   }
 
-  let body = <button className="login">log in to spotify</button>;
+  let body = <button className="login" onClick={handleClick}>log in to spotify</button>;
 
   if (loggedIn) {
     body = (
       <>
-        <SearchBar />
+        <SearchBar onSearch={onSearch} />
         {tracksResults2.length > 0 && (
           <div className="main-panel">
             <SearchResults tracks={tracksResults} onAdd={addTrack} />

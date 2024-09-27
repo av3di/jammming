@@ -54,13 +54,34 @@ const Spotify = {
     try {
       const result = await fetch(url, payload);
       const response = await result.json();
-      localStorage.setItem('access_token', response.access_token);
-      return response;
+      window.localStorage.setItem('access_token', response.access_token);
     } catch (error) {
       console.log("No access token created: " + error);
       throw error;
     }
+  },
+  async search() {
+    const url = 'https://api.spotify.com/v1/search';
+    console.log('serachin....');
+    const params = new URLSearchParams({
+      q: 'cold',
+      type: 'track',
+    });
+    try {
+      const accessToken = window.localStorage.getItem('access_token');
+      const result = await fetch(`${url}?${params.toString()}`, {
+        headers: {
+              Authorization: `Bearer ${accessToken}`
+        }
+      });
+      const response = await result.json();
+      console.log('done search');
+      console.log(response);
+    } catch (error) {
+      console.log('Something went wrong with search: ' + error);
+      throw error;
+    }
   }
-}
+};
 
 export default Spotify;
