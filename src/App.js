@@ -9,8 +9,8 @@ let code = '';
 
 function App() {
   // const loggedIn = !!window.localStorage.getItem('access_token');
-  const loggedIn = false;
-
+  const loggedIn = true;
+  const tracksResults2 = [];
   const params = new URLSearchParams(window.location.search);
   if(params.get("code")) code = params.get("code");
 
@@ -34,19 +34,22 @@ function App() {
   }
 
   let body = <button className="login">log in to spotify</button>;
+
   if (loggedIn) {
     body = (
       <>
         <SearchBar />
-        <div className="main-panel">
-          <SearchResults tracks={tracksResults} onAdd={addTrack} />
-          <Playlist
-            tracks={playlistTracks}
-            onRemove={removeTrack}
-            name={playlistName}
-            setName={setPlaylistName}
-          />
-        </div>
+        {tracksResults2.length > 0 && (
+          <div className="main-panel">
+            <SearchResults tracks={tracksResults} onAdd={addTrack} />
+            <Playlist
+              tracks={playlistTracks}
+              onRemove={removeTrack}
+              name={playlistName}
+              setName={setPlaylistName}
+            />
+          </div>
+        )}
       </>
     );
   }
