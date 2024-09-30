@@ -23,6 +23,7 @@ function App() {
 
   const [searchExecuted, setSearchExecuted] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+  const [error, setError] = useState('');
 
   const onSearch = async (term) => {
       if (!searchExecuted) await Spotify.getAccessToken(code);
@@ -30,8 +31,9 @@ function App() {
         const results = await Spotify.search(term);
         setSearchResults(results);
         setSearchExecuted(true);
-      } catch (error) {
-        console.log('Error retrieving results: ' + error);
+      } catch (connectionError) {
+        console.log('Error retrieving results: ' + connectionError);
+        setError('Sorry, something went wrong. Please try again later');
       }
   };
 
@@ -46,12 +48,12 @@ function App() {
     setPlaylistTracks((prev) => prev.filter(track => track.id !== id));
   }
 
-  let body = <button className="login" onClick={handleClick}>log in to spotify</button>;
-
+  let body;
   if (loggedIn) {
     body = (
       <>
         <SearchBar onSearch={onSearch} />
+        {error && <p class="error">{error}</p>}
         {searchExecuted && (
           <div className="main-panel">
             <SearchResults tracks={searchResults} onAdd={addTrack} />
@@ -65,6 +67,8 @@ function App() {
         )}
       </>
     );
+  } else {
+    body = <button className="login" onClick={handleClick}>log in to spotify</button>;
   }
 
   return (

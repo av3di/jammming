@@ -45,7 +45,7 @@ const Spotify = {
         client_id: clientId,
         grant_type: 'authorization_code',
         code,
-        redirect_uri: redirectUri,
+        // redirect_uri: redirectUri,
         code_verifier: codeVerifier,
       }),
     }
@@ -54,6 +54,7 @@ const Spotify = {
     try {
       const result = await fetch(url, payload);
       const response = await result.json();
+      console.log(response);
       window.localStorage.setItem('access_token', response.access_token);
     } catch (error) {
       console.log("No access token created: " + error);
