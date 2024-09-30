@@ -12,3 +12,10 @@
   font-size: 28px;
   color: #1F363D;
 }
+
+p.playlist-error {
+  font-size: 24px;
+  margin-bottom: 15px;
+  margin-bottom: 15px;
+  color: #FF6B6B;
+}

@@ -1,11 +1,13 @@
 import React from 'react';
 import './SaveToSpotifyButton.css';
 
-function SaveToSpotifyButton() {
-
+function SaveToSpotifyButton(props) {
+  const handleClick = () => {
+    props.onSave();
+  }
   return (
     <div>
-      <button>save playlist to spotify</button>
+      <button onClick={handleClick} disabled={props.disable}>save playlist to spotify</button>
     </div>
   );
 }

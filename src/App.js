@@ -26,19 +26,19 @@ function App() {
   const [error, setError] = useState('');
 
   const onSearch = async (term) => {
-      if (!searchExecuted) await Spotify.getAccessToken(code);
       try {
+        if (!searchExecuted) await Spotify.getAccessToken(code);
         const results = await Spotify.search(term);
         setSearchResults(results);
         setSearchExecuted(true);
       } catch (connectionError) {
-        console.log('Error retrieving results: ' + connectionError);
         setError('Sorry, something went wrong. Please try again later');
       }
   };
 
   const [playlistName, setPlaylistName]  = useState('');
   const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [playlistError, setPlaylistError] = useState('');
 
   const addTrack = (track) => {
     setPlaylistTracks(prev => [...prev, track]);
@@ -48,20 +48,31 @@ function App() {
     setPlaylistTracks((prev) => prev.filter(track => track.id !== id));
   }
 
+  const savePlaylist = async () => {
+    const playlistURIs = playlistTracks.map((track) => track.uri);
+    try {
+      await Spotify.savePlaylist(playlistName, playlistURIs);
+    } catch (playlistErrors) {
+      setPlaylistError('Sorry, this playlist could not be saved. Please try again later');
+    }
+  }
+
   let body;
   if (loggedIn) {
     body = (
       <>
         <SearchBar onSearch={onSearch} />
-        {error && <p class="error">{error}</p>}
+        {error && <p className="error">{error}</p>}
         {searchExecuted && (
           <div className="main-panel">
             <SearchResults tracks={searchResults} onAdd={addTrack} />
             <Playlist
               tracks={playlistTracks}
               onRemove={removeTrack}
+              error={playlistError}
               name={playlistName}
               setName={setPlaylistName}
+              onSave={savePlaylist}
             />
           </div>
         )}
