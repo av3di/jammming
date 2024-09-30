@@ -2,3 +2,8 @@ h3 {
   color: #4ECDC4;
   margin-bottom: 20px;
 }
+
+.no-results {
+  font-size: 36px;
+  color: #1F363D;
+}
