@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import './Track.css';
 
 function Track(props) {
-  const {track, onAdd, onRemove} = props;
+  const {track, onAdd, onRemove, limitReached} = props;
   const handleAddClick = useCallback(
     () => {
       onAdd(track);
@@ -24,7 +24,7 @@ function Track(props) {
           <p className="album">for: <span className="values">{track.album.name}</span></p>
         </div>
       </div>
-      {onAdd && <div className="edit-button" onClick={handleAddClick}>+</div>}
+      {onAdd && !limitReached && <div className="edit-button" onClick={handleAddClick}>+</div>}
       {onRemove && <div className="edit-button" onClick={handleRemoveClick}>-</div>}
     </div>
   );

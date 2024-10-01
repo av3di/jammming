@@ -8,7 +8,7 @@ function SearchResults(props) {
     <div className="panel">
       <h3>results</h3>
       {props.tracks.length === 0 && noResults}
-      <TrackList tracks={props.tracks} onAdd={props.onAdd} />
+      <TrackList tracks={props.tracks} onAdd={props.onAdd} limitReached={props.limitReached} />
     </div>
   );
 }

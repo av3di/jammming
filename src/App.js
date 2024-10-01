@@ -42,7 +42,8 @@ function App() {
   const [playlistSuccess, setPlaylistSuccess] = useState('');
 
   const addTrack = (track) => {
-    setPlaylistTracks(prev => [...prev, track]);
+    if (playlistTracks.length < 100)
+      setPlaylistTracks(prev => [...prev, track]);
   };
 
   const removeTrack = ({id}) => {
@@ -80,7 +81,7 @@ function App() {
         {error && <p className="error">{error}</p>}
         {searchExecuted && (
           <div className="main-panel">
-            <SearchResults tracks={searchResults} onAdd={addTrack} />
+            <SearchResults tracks={searchResults} onAdd={addTrack} limitReached={playlistTracks.length === 100}/>
             <Playlist
               tracks={playlistTracks}
               onRemove={removeTrack}
