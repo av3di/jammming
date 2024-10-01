@@ -13,9 +13,16 @@
   color: #1F363D;
 }
 
-p.playlist-error {
+p.playlist-error, p.playlist-success {
   font-size: 24px;
   margin-bottom: 15px;
   margin-bottom: 15px;
+}
+
+p.playlist-error {
   color: #FF6B6B;
+}
+
+p.playlist-success {
+  color: #4ECDC4;
 }

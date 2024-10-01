@@ -39,6 +39,7 @@ function App() {
   const [playlistName, setPlaylistName]  = useState('');
   const [playlistTracks, setPlaylistTracks] = useState([]);
   const [playlistError, setPlaylistError] = useState('');
+  const [playlistSuccess, setPlaylistSuccess] = useState('');
 
   const addTrack = (track) => {
     setPlaylistTracks(prev => [...prev, track]);
@@ -52,10 +53,24 @@ function App() {
     const playlistURIs = playlistTracks.map((track) => track.uri);
     try {
       await Spotify.savePlaylist(playlistName, playlistURIs);
+      setPlaylistName('');
+      setPlaylistTracks([]);
+      setPlaylistSuccess('success! playlist saved');
     } catch (playlistErrors) {
       setPlaylistError('Sorry, this playlist could not be saved. Please try again later');
     }
   }
+
+  useEffect(() => {
+    let timeout;
+    if (playlistSuccess.length > 0) {
+      timeout = setTimeout(() => {
+        setPlaylistSuccess('');
+      }, 2000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [playlistSuccess]);
 
   let body;
   if (loggedIn) {
@@ -70,6 +85,7 @@ function App() {
               tracks={playlistTracks}
               onRemove={removeTrack}
               error={playlistError}
+              success={playlistSuccess}
               name={playlistName}
               setName={setPlaylistName}
               onSave={savePlaylist}
