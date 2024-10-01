@@ -1,4 +1,4 @@
-const clientId = '';
+const clientId = '5a20e8b94a404b90a61e59aa6be62a4f';
 const redirectUri = 'http://localhost:3000/';
 
 function generateCodeVerifier(length) {
