@@ -31,7 +31,7 @@ function Playlist(props) {
           tracks={props.tracks}
           onRemove={props.onRemove}
       />
-      <SaveToSpotifyButton onSave={props.onSave} disable={props.name.length === 0}/>
+      <SaveToSpotifyButton onSave={props.onSave} disable={props.name.length === 0 || props.tracks.length === 0}/>
       <p className="playlist-error">{ props.error }</p>
       <p className="playlist-success">{ props.success }</p>
     </div>
