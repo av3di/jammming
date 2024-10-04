@@ -7,3 +7,10 @@ h3 {
   font-size: 36px;
   color: #1F363D;
 }
+
+.pagination {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}

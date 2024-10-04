@@ -25,24 +25,25 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState('');
   const [nextResultsUrl, setNextResultsUrl] = useState('');
+  const [prevResultsUrl, setPrevResultsUrl] = useState('');
 
   const onSearch = async (term) => {
       try {
         if (!searchExecuted) await Spotify.getAccessToken(code);
         setSearchExecuted(true);
         const url = Spotify.searchByQuery(term);
-        console.log('onSearch url: ' + url);
-        await getNextResults(url);
+        await getResults(url);
       } catch (connectionError) {
         setError('Sorry, something went wrong. Please try again later');
       }
   };
 
-  const getNextResults = async (url = nextResultsUrl) => {
+  const getResults = async (url) => {
     try {
       const tracks = await Spotify.search(url);
       setSearchResults(tracks.items);
       setNextResultsUrl(tracks.next);
+      setPrevResultsUrl(tracks.previous);
     } catch (connectionError) {
       setError('Sorry, something went wrong. Please try again later');
     }
@@ -96,8 +97,9 @@ function App() {
             <SearchResults tracks={searchResults}
               onAdd={addTrack}
               limitReached={playlistTracks.length === 100}
-              getNextResults={getNextResults}
+              getResults={getResults}
               nextResultsUrl={nextResultsUrl}
+              prevResultsUrl={prevResultsUrl}
             />
             <Playlist
               tracks={playlistTracks}

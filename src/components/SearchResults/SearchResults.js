@@ -2,6 +2,7 @@ import React from 'react';
 import './SearchResults.css';
 import TrackList from '../TrackList/TrackList';
 import SearchResultsNextButton from '../SearchResultsNextButton/SearchResultsNextButton';
+import SearchResultsPrevButton from '../SearchResultsPrevButton/SearchResultsPrevButton';
 
 function SearchResults(props) {
   const noResults = <p className="no-results">no results</p>;
@@ -13,10 +14,16 @@ function SearchResults(props) {
         onAdd={props.onAdd}
         limitReached={props.limitReached}
       />
-      <SearchResultsNextButton
-        getNextResults={props.getNextResults}
-        nextResultsUrl={props.nextResultsUrl}
-      />
+      <div className="pagination">
+        <SearchResultsPrevButton
+          getResults={props.getResults}
+          prevResultsUrl={props.prevResultsUrl}
+        />
+        <SearchResultsNextButton
+          getResults={props.getResults}
+          nextResultsUrl={props.nextResultsUrl}
+        />
+      </div>
     </div>
   );
 }
