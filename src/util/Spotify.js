@@ -136,26 +136,28 @@ const Spotify = {
       throw error;
     }
   },
-  async search(q) {
-    const url = 'https://api.spotify.com/v1/search';
-    const params = new URLSearchParams({
-      q,
-      type: 'track',
-    });
-
+  async search(url) {
     try {
       const accessToken = window.localStorage.getItem('access_token');
-      const result = await fetch(`${url}?${params.toString()}`, {
+      const result = await fetch(url, {
         headers: {
               Authorization: `Bearer ${accessToken}`
         }
       });
       const response = await result.json();
-      return response.tracks.items;
+      return response.tracks;
     } catch (error) {
       console.error('Something went wrong with search: ' + error);
       throw error;
     }
+  },
+  searchByQuery(q) {
+    const url = 'https://api.spotify.com/v1/search';
+    const params = new URLSearchParams({
+      q,
+      type: 'track',
+    });
+    return `${url}?${params.toString()}`;
   },
   async savePlaylist(playlistName, playlistURIs) {
     try {

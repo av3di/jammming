@@ -24,17 +24,29 @@ function App() {
   const [searchExecuted, setSearchExecuted] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState('');
+  const [nextResultsUrl, setNextResultsUrl] = useState('');
 
   const onSearch = async (term) => {
       try {
         if (!searchExecuted) await Spotify.getAccessToken(code);
-        const results = await Spotify.search(term);
-        setSearchResults(results);
         setSearchExecuted(true);
+        const url = Spotify.searchByQuery(term);
+        console.log('onSearch url: ' + url);
+        await getNextResults(url);
       } catch (connectionError) {
         setError('Sorry, something went wrong. Please try again later');
       }
   };
+
+  const getNextResults = async (url = nextResultsUrl) => {
+    try {
+      const tracks = await Spotify.search(url);
+      setSearchResults(tracks.items);
+      setNextResultsUrl(tracks.next);
+    } catch (connectionError) {
+      setError('Sorry, something went wrong. Please try again later');
+    }
+  }
 
   const [playlistName, setPlaylistName]  = useState('');
   const [playlistTracks, setPlaylistTracks] = useState([]);
@@ -81,7 +93,12 @@ function App() {
         {error && <p className="error">{error}</p>}
         {searchExecuted && (
           <div className="main-panel">
-            <SearchResults tracks={searchResults} onAdd={addTrack} limitReached={playlistTracks.length === 100}/>
+            <SearchResults tracks={searchResults}
+              onAdd={addTrack}
+              limitReached={playlistTracks.length === 100}
+              getNextResults={getNextResults}
+              nextResultsUrl={nextResultsUrl}
+            />
             <Playlist
               tracks={playlistTracks}
               onRemove={removeTrack}
