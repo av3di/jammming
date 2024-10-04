@@ -9,8 +9,14 @@ function SearchBar(props) {
     props.onSearch(term);
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && term.length > 0) {
+        props.onSearch(term);
+    }
+  }
+
   return (
-    <div className="search-panel">
+    <div className="search-panel" onKeyDown={handleKeyDown}>
       <input type="text"
         value={term}
         className="search-box"
