@@ -11,8 +11,7 @@ function SearchBar(props) {
   };
 
   const canSearch = () => {
-    return term.length > 0
-            && !props.searchInProgress
+    return term.length > 0 && !props.searchInProgress;
   };
 
   const handleClick = () => {
