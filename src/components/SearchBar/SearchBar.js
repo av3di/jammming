@@ -3,14 +3,22 @@ import './SearchBar.css';
 
 function SearchBar(props) {
   const [term, setTerm] = useState('');
+  const [prevTerm, setPrevTerm] = useState('');
 
-  const handleChange = ({target}) => setTerm(target.value);
+  const handleChange = ({target}) => {
+    setPrevTerm(term);
+    setTerm(target.value);
+  }
   const handleClick = () => {
-    props.onSearch(term);
+    if (term !== prevTerm) {
+      setPrevTerm(term);
+      props.onSearch(term);
+    }
   }
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && term.length > 0) {
+    if (e.key === 'Enter' && term.length > 0 && term !== prevTerm) {
+        setPrevTerm(term);
         props.onSearch(term);
     }
   }
