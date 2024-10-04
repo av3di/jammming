@@ -19,9 +19,10 @@ function App() {
 
   const handleClick = async () => {
     if(!code) await Spotify.authorize();
-  }
+  };
 
   const [hasAccessToken, setHasAccessToken] = useState(false);
+  const [searchInProgress, setSearchInProgress] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState('');
   const [nextResultsUrl, setNextResultsUrl] = useState('');
@@ -29,7 +30,7 @@ function App() {
 
   const onSearch = async (term) => {
       try {
-        if (!hasAccessToken) await Spotify.getAccessToken(code);
+        if (!hasAccessToken && !searchInProgress) await Spotify.getAccessToken(code);
         setHasAccessToken(true);
         const url = Spotify.searchByQuery(term);
         await getResults(url);
@@ -39,15 +40,17 @@ function App() {
   };
 
   const getResults = async (url) => {
+    setSearchInProgress(true);
     try {
       const tracks = await Spotify.search(url);
       setSearchResults(tracks.items);
       setNextResultsUrl(tracks.next);
       setPrevResultsUrl(tracks.previous);
+      setSearchInProgress(false);
     } catch (connectionError) {
       setError('Sorry, something went wrong. Please try again later');
     }
-  }
+  };
 
   const [playlistName, setPlaylistName]  = useState('');
   const [playlistTracks, setPlaylistTracks] = useState([]);
@@ -73,7 +76,7 @@ function App() {
     } catch (playlistErrors) {
       setPlaylistError('Sorry, this playlist could not be saved. Please try again later');
     }
-  }
+  };
 
   useEffect(() => {
     let timeout;
@@ -90,7 +93,10 @@ function App() {
   if (loggedIn) {
     body = (
       <>
-        <SearchBar onSearch={onSearch} />
+        <SearchBar
+          onSearch={onSearch}
+          searchInProgress={searchInProgress}
+        />
         {error && <p className="error">{error}</p>}
         {hasAccessToken && (
           <div className="main-panel">
