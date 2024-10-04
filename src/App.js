@@ -21,7 +21,7 @@ function App() {
     if(!code) await Spotify.authorize();
   }
 
-  const [searchExecuted, setSearchExecuted] = useState(false);
+  const [hasAccessToken, setHasAccessToken] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState('');
   const [nextResultsUrl, setNextResultsUrl] = useState('');
@@ -29,8 +29,8 @@ function App() {
 
   const onSearch = async (term) => {
       try {
-        if (!searchExecuted) await Spotify.getAccessToken(code);
-        setSearchExecuted(true);
+        if (!hasAccessToken) await Spotify.getAccessToken(code);
+        setHasAccessToken(true);
         const url = Spotify.searchByQuery(term);
         await getResults(url);
       } catch (connectionError) {
@@ -92,7 +92,7 @@ function App() {
       <>
         <SearchBar onSearch={onSearch} />
         {error && <p className="error">{error}</p>}
-        {searchExecuted && (
+        {hasAccessToken && (
           <div className="main-panel">
             <SearchResults tracks={searchResults}
               onAdd={addTrack}
