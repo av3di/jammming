@@ -1,6 +1,11 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It is for my assignment on Codecademy to create an app that allows the user to sign in to their Spotify account and create a new playlist that they can save to their account. Project is designed and developed by me. It uses Authorization Code with PKCE Flow for the authorization part.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). The app allows a whitelisted user to sign in to their Spotify account and create a new playlist that they can save to their account. Project is designed and developed by me. It uses Authorization Code with PKCE Flow for the authorization part.
+
+Note: You must be a whitelisted user for this app to be able to sign in and use the app.
+
+Below is a screenshot from the app.
+![app screenshot](https://ebonyuribe.com/images/jammming.jpg)
 
 ## Available Scripts
 
