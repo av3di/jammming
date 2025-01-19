@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Note: You must be a whitelisted user for this app to be able to sign in and use the app.
 
 Below is a screenshot from the app.
+
 ![app screenshot](https://ebonyuribe.com/images/jammming.jpg)
 
 ## Available Scripts
